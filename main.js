@@ -38,7 +38,6 @@ const loadingManager = new THREE.LoadingManager(
 	// Loaded
 	() =>
 	{
-		console.log('loaded')
 		isThreeFullyLoaded = true
 		headlineImage.classList.add('visibility-hidden')
 		progressBar.classList.add('visibility-hidden')
@@ -50,8 +49,6 @@ const loadingManager = new THREE.LoadingManager(
 		progressBar.value = itemsLoaded;
 		progressBar.max = itemsTotal;
 		headlineImage.classList.add('remove-animation')
-		const progressRatio = itemsLoaded / itemsTotal
-		console.log(progressRatio)
 	},
 )
 
@@ -72,12 +69,12 @@ const cubeTextureLoader = new THREE.CubeTextureLoader(loadingManager)
  * Environment map
  */
 const environmentMap = cubeTextureLoader.load([
-	'/textures/environmentMaps/4/px-q.png',
-	'/textures/environmentMaps/4/nx-q.png',
-	'/textures/environmentMaps/4/py-q.png',
-	'/textures/environmentMaps/4/ny-q.png',
-	'/textures/environmentMaps/4/pz-q.png',
-	'/textures/environmentMaps/4/nz-q.png'
+	'./textures/environmentMaps/4/px-q.png',
+	'./textures/environmentMaps/4/nx-q.png',
+	'./textures/environmentMaps/4/py-q.png',
+	'./textures/environmentMaps/4/ny-q.png',
+	'./textures/environmentMaps/4/pz-q.png',
+	'./textures/environmentMaps/4/nz-q.png'
 ])
 
 /**
@@ -86,7 +83,7 @@ const environmentMap = cubeTextureLoader.load([
 const stationGroup = new THREE.Group()
 scene_start.add(stationGroup)
 
-const stationShadow = textureLoader.load('/textures/station/station_shadow.png')
+const stationShadow = textureLoader.load('./textures/station/station_shadow.png')
 const shadowPlane = new THREE.Mesh(
 	new THREE.PlaneGeometry(0.5, 0.5,),
 	new THREE.MeshBasicMaterial( {color: '#000000', alphaMap: stationShadow, transparent: true,} )
@@ -99,10 +96,10 @@ stationGroup.add(shadowPlane)
 /**
  * Textures
  */
-const stationBodyTex = textureLoader.load('/textures/station/station_textile.jpg')
-const stationBodyNorms = textureLoader.load('/textures/station/station_textile_normals.jpg')
-const stationTop = textureLoader.load('/textures/station/station_top_color.png')
-const stationTopAlpha = textureLoader.load('/textures/station/station_top_alpha.png')
+const stationBodyTex = textureLoader.load('./textures/station/station_textile.jpg')
+const stationBodyNorms = textureLoader.load('./textures/station/station_textile_normals.jpg')
+const stationTop = textureLoader.load('./textures/station/station_top_color.png')
+const stationTopAlpha = textureLoader.load('./textures/station/station_top_alpha.png')
 stationTop.flipY = false
 stationTopAlpha.flipY = false
 stationTop.generateMipmaps = false
@@ -158,7 +155,7 @@ const YSTopPlateMaterial = new THREE.MeshStandardMaterial({
  * Models
  */
 gltfLoader.load(
-	'/station4.glb',
+	'./station4.glb',
 	(gltf) => {
 		gltf.scene.traverse((child) => {
 			switch (child.name) {
@@ -274,7 +271,7 @@ window.addEventListener('scroll', function ()
 {
 	scrollY = window.scrollY
 	stationGroup.rotation.set(0,-scrollY/1440,0)
-	console.log(scrollY)
+	// console.log(scrollY)
 	if (scrollY > 0.1 && topButtonVisible) {
 		topButtonVisible = false;
 		topButton.classList.add('fade-out')
@@ -428,7 +425,6 @@ const tick = () =>
 		} else if (YSTopEffectMaterial.uniforms.uIntensity.value < 1) {
 			YSTopEffectMaterial.uniforms.uIntensity.value = Math.pow((elapsedTime - loadTime) / 3, 2);
 			pointLightGlimpse.position.x = 0.6 + (elapsedTime - loadTime) / 2;
-			console.log(pointLightGlimpse.position)
 		}
 	}
 
