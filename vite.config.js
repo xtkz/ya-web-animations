@@ -6,4 +6,5 @@ export default {
   plugins: [
     glsl()
   ],
+	base: '/ya-web-animations/'
 }
