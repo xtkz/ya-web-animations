@@ -236,7 +236,7 @@ camera.updateProjectionMatrix()
 scene_start.add(camera)
 
 // Controls
-const controls = new OrbitControls(camera, document.querySelector('section.top'))
+const controls = new OrbitControls(camera, document.querySelector('.top__drag-receiver'))
 controls.enableDamping = true;
 controls.enableZoom = false;
 controls.enablePan = true;
@@ -265,6 +265,10 @@ renderer.physicallyCorrectLights = true;
  */
 const topButton = document.querySelector('.top__button');
 let topButtonVisible = true
+// topButton.addEventListener('onclick', (e) => {
+// 	console.log(e)
+// 	e.stopImmediatePropagation()
+// })
 
 let scrollY
 window.addEventListener('scroll', function ()

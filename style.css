@@ -210,6 +210,11 @@ canvas.headline-img {
 	height: 1440px;
 }
 
+.top__drag-receiver {
+	background-color: #ffffff01;
+	height: 40vw;
+	margin-top: -200px;
+}
 
 .top__button {
 	display: block;
@@ -223,6 +228,7 @@ canvas.headline-img {
 	left: calc(50% - 256px/2);
 	transition: opacity 0.1s;
 	border: none;
+	z-index: 99;
 }
 
 .top__button svg {
@@ -447,10 +453,15 @@ section.alice {
 	padding-top: 115px;
 }
 
+.alice__headline svg{
+	position: absolute;
+	left: calc(50% + 400px);
+}
+
 .alice__video {
 	position: absolute;
 	object-fit: scale-down;
-	object-position: center -220px;
+	object-position: center -200px;
 	z-index: -1;
 	left: calc(50% - 1280px);
 	height: 1500px;
