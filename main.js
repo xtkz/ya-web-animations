@@ -386,16 +386,9 @@ const observer = new IntersectionObserver(([entry]) => {
 	}
 	else if (entry.target.className === 'alice') {
 		if (entry.isIntersecting) {
-			aliceVideo.play()
-			speechTitle.classList.remove('speech_hidden')
-			speechList.forEach((item) => {
-				item.classList.remove('speech_hidden')
-			})
+			aliceStart()
 		} else {
-			speechTitle.classList.add('speech_hidden')
-			speechList.forEach((item) => {
-				item.classList.add('speech_hidden')
-			})
+			aliceReset()
 		}
 	}
 })
@@ -469,5 +462,29 @@ xploParts[1].addEventListener('transitionend', () => {
 			item.classList.remove('kv-unfolded');
 		})
 		xploImg.classList.add('visible')
+	}
+})
+
+let aliceFlag = false
+function aliceStart() {
+	aliceVideo.play()
+	speechTitle.classList.remove('speech_hidden')
+	speechList.forEach((item) => {
+		item.classList.remove('speech_hidden')
+	})
+	aliceFlag = true
+}
+
+function aliceReset() {
+	speechTitle.classList.add('speech_hidden')
+	speechList.forEach((item) => {
+		item.classList.add('speech_hidden')
+	})
+	aliceFlag = false
+}
+
+sectionAlice.addEventListener('pointerdown', () => {
+	if (!aliceFlag) {
+		aliceStart()
 	}
 })
