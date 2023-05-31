@@ -61,7 +61,7 @@ const dracoLoader = new DRACOLoader(loadingManager)
 // GLTF loader
 const gltfLoader = new GLTFLoader(loadingManager)
 gltfLoader.setDRACOLoader(dracoLoader)
-dracoLoader.setDecoderPath('/draco/')
+dracoLoader.setDecoderPath('./draco/')
 
 const cubeTextureLoader = new THREE.CubeTextureLoader(loadingManager)
 
